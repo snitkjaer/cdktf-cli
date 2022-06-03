@@ -4,11 +4,6 @@ LABEL name="cdktf-cli"
 ARG TF_VERSION="1.2.2"
 LABEL version="1.2.2"
 
-
-
-#RUN groupadd --gid 1000 pn && useradd --uid 1000 --gid pn --shell /bin/bash --create-home pn
-#ENV POETRY_HOME=/usr/local
-
 # Python
 RUN pip install pipenv
 ENV PATH $PYENV_HOME/shims:$PYENV_HOME/bin:$PATH
