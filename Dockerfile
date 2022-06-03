@@ -6,15 +6,11 @@ LABEL version="1.2.2"
 
 
 
-RUN groupadd --gid 1000 pn && useradd --uid 1000 --gid pn --shell /bin/bash --create-home pn
-ENV POETRY_HOME=/usr/local
-# Install node prereqs, nodejs and yarn
-# Ref: https://deb.nodesource.com/setup_14.x
-# Ref: https://yarnpkg.com/en/docs/install
+#RUN groupadd --gid 1000 pn && useradd --uid 1000 --gid pn --shell /bin/bash --create-home pn
+#ENV POETRY_HOME=/usr/local
 
 # Python
 RUN pip install pipenv
-RUN pipenv install --system --deploy
 ENV PATH $PYENV_HOME/shims:$PYENV_HOME/bin:$PATH
 
 # Update
@@ -26,6 +22,7 @@ RUN apt-get install curl -y
 RUN apt-get install gnupg2 -y
 RUN apt-get install unzip
 RUN apt-get install npm -y
+RUN apt-get install python3-distutils -y
 
 # Node.js
 RUN npm install -g n
@@ -43,4 +40,4 @@ RUN ARCH=$(arch | sed s/aarch64/arm64/ | sed s/x86_64/amd64/) \
 	&& mv terraform /usr/local/bin/
 
 # Terraform CDK
-RUN npm install --global cdktf-cli@latest
+RUN npm install --location=global cdktf-cli@latest
