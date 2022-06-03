@@ -1,8 +1,10 @@
 FROM python:3.7-slim
 
-LABEL name="cdktf-cli"
 ARG TF_VERSION="1.2.2"
-LABEL version="1.2.2"
+
+LABEL author="Bo Snitkjaer Nielsen"
+LABEL maintainer="https://github.com/snitkjaer/cdktf-cli"
+LABEL name="cdktf-cli"
 
 # Python
 RUN pip install pipenv
