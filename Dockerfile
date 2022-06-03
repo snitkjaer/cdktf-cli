@@ -6,7 +6,6 @@ LABEL version="1.2.2"
 
 # Python
 RUN pip install pipenv
-ENV PATH $PYENV_HOME/shims:$PYENV_HOME/bin:$PATH
 
 # Update
 RUN apt-get update
@@ -29,7 +28,7 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 # Terraform
 RUN curl -fsSL https://apt.releases.hashicorp.com/gpg | apt-key add -
 RUN ARCH=$(arch | sed s/aarch64/arm64/ | sed s/x86_64/amd64/) \
-    && curl -o terraform.zip "https://releases.hashicorp.com/terraform/$TF_VERSION/terraform_${TF_VERSION}_linux_$ARCH.zip" \
+    && curl -o terraform.zip "https://releases.hashicorp.com/terraform/${TF_VERSION}/terraform_${TF_VERSION}_linux_${ARCH}.zip" \
 	&& unzip -o terraform.zip \
 	&& rm terraform.zip \
 	&& mv terraform /usr/local/bin/
